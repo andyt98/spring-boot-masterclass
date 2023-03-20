@@ -11,14 +11,12 @@ import java.util.List;
 @Service
 public class CustomerService {
 
-    private final static Logger LOGGER =
-            LoggerFactory.getLogger(CustomerService.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(CustomerService.class);
 
     private final CustomerRepository customerRepository;
 
     @Autowired
-    public CustomerService(
-            CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
@@ -28,14 +26,10 @@ public class CustomerService {
     }
 
     Customer getCustomer(Long id) {
-        return customerRepository
-                .findById(id)
-                .orElseThrow(
-                        () -> {
-                            NotFoundException notFoundException = new NotFoundException(
-                                    "customer with id " + id + " not found");
-                            LOGGER.error("error in getting customer {}", id, notFoundException);
-                            return notFoundException;
-                        });
+        return customerRepository.findById(id).orElseThrow(() -> {
+            NotFoundException notFoundException = new NotFoundException("customer with id " + id + " not found");
+            LOGGER.error("error in getting customer {}", id, notFoundException);
+            return notFoundException;
+        });
     }
 }

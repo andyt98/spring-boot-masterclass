@@ -13,53 +13,26 @@ import java.util.stream.Collectors;
 public class ApiExceptionHandler {
 
     @ExceptionHandler(value = ApiRequestException.class)
-    public ResponseEntity<Object> handleApiRequestException(
-            ApiRequestException e
-    ) {
+    public ResponseEntity<Object> handleApiRequestException(ApiRequestException e) {
 
-        ApiException apiException = new ApiException(
-                e.getMessage(),
-                e,
-                HttpStatus.BAD_REQUEST,
-                ZonedDateTime.now()
-        );
+        ApiException apiException = new ApiException(e.getMessage(), e, HttpStatus.BAD_REQUEST, ZonedDateTime.now());
 
-        return new ResponseEntity<>(
-                apiException,
-                HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = NotFoundException.class)
-    public ResponseEntity<Object> handleNotFoundException(
-            NotFoundException e
-    ) {
+    public ResponseEntity<Object> handleNotFoundException(NotFoundException e) {
 
-        ApiException apiException = new ApiException(
-                e.getMessage(),
-                e,
-                HttpStatus.NOT_FOUND,
-                ZonedDateTime.now()
-        );
+        ApiException apiException = new ApiException(e.getMessage(), e, HttpStatus.NOT_FOUND, ZonedDateTime.now());
 
-        return new ResponseEntity<>(
-                apiException,
-                HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
     }
 
-//    @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public ResponseEntity<Object> handleMethodArgumentNotValidException(
-            MethodArgumentNotValidException e
-    ) {
+    //    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    public ResponseEntity<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
 
-        ApiException apiException = new ApiException(
-                e.getMessage(),
-                e,
-                HttpStatus.NOT_FOUND,
-                ZonedDateTime.now()
-        );
+        ApiException apiException = new ApiException(e.getMessage(), e, HttpStatus.NOT_FOUND, ZonedDateTime.now());
 
-        return new ResponseEntity<>(
-                apiException,
-                HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
     }
 }
